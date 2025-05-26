@@ -20,7 +20,34 @@
   </div>
 </div>
 
+
 <hr>
 
+<% @spending_habits = SpendingHabitInput.where({ :conversation_id => @the_conversation.id}) %>
+<% if @spending_habits.any? %>
+  <% @spending_habits.each do |sh| %>
+    <dl>
+      <dt>Airline Loyalty</dt>
+      <dd><%= sh.airline_loyalty.to_s %></dd>
+
+      <dt>Annual Fee Tolerance</dt>
+      <dd><%= sh.annual_fee_tolerance.to_s %></dd>
+
+      <dt>Dining &amp; Restaurants</dt>
+      <dd><%= sh.diningrestaurants.to_s %></dd>
+
+      <dt>Gas &amp; Fuel</dt>
+      <dd><%= sh.gasfuel.to_s %></dd>
+
+      <dt>Groceries</dt>
+      <dd><%= sh.groceries.to_s %></dd>
+
+      <dt>Travel, Flights, Hotels &amp; Uber</dt>
+      <dd><%= sh.travel_flights_hotels_uber.to_s %></dd>
+    </dl>
+  <% end %>
+<% else %>
+  <p>No spending-habit data entered yet.</p>
+<% end %>
 
 <hr>

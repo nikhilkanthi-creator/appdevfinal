@@ -29,7 +29,11 @@
     </h2>
 
     <form action="/insert_spending_habit_input" method="post">
+      <input type="hidden" name="conversation_id" value= "<%= @the_conversation.id %>"/>
+
       <div>
+
+
         <label for="groceries_box">
           Groceries
         </label>

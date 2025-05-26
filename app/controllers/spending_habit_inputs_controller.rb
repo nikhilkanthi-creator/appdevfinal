@@ -18,9 +18,10 @@ class SpendingHabitInputsController < ApplicationController
   end
 
   def create
+
     the_spending_habit_input = SpendingHabitInput.new
-    the_spending_habit_input.created_by_id = 1
-    the_spending_habit_input.conversation_id = 1
+    the_spending_habit_input.created_by_id = current_user.id
+    the_spending_habit_input.conversation_id = params.fetch("conversation_id")
     the_spending_habit_input.groceries = params.fetch("query_groceries")
     the_spending_habit_input.gasfuel = params.fetch("query_gasfuel")
     the_spending_habit_input.diningrestaurants = params.fetch("query_diningrestaurants")

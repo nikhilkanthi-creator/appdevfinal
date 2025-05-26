@@ -1,0 +1,86 @@
+<div>
+  <div>
+    <h1>
+      List of all conversations
+    </h1>
+  </div>
+</div>
+
+<hr>
+
+<div>
+  <div>
+    <h2>
+      Add a new conversation
+    </h2>
+
+    <form action="/insert_conversation" method="post">
+      <div>
+        <label for="user_id_box">
+          User
+        </label>
+
+        <input type="text" id="user_id_box" name="query_user_id">
+      </div>
+
+      <button>
+        Create conversation
+      </button>
+    </form>
+  </div>
+</div>
+
+<hr>
+<div>
+  <div>
+    <table border="1">
+      <tr>
+        <th>
+          ID
+        </th>
+
+        <th>
+          User
+        </th>
+
+        <th>
+          Created at
+        </th>
+
+        <th>
+          Updated at
+        </th>
+
+        <th>
+        </th>
+      </tr>
+
+      <% @list_of_conversations.each do |a_conversation| %>
+      <tr>
+        <td>
+          <%= a_conversation.id %>
+        </td>
+
+        <td>
+          <%= a_conversation.user_id %>
+        </td>
+
+        <td>
+          <%= time_ago_in_words(a_conversation.created_at) %> ago
+        </td>
+        <td>
+          <%= time_ago_in_words(a_conversation.updated_at) %> ago
+        </td>
+
+        <td>
+          <a href="/conversations/<%= a_conversation.id %>">
+            Show details
+          </a>
+        </td>
+      </tr>
+      <% end %>
+    </table>
+  </div>
+</div>
+
+<hr>

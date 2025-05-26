@@ -1,0 +1,102 @@
+<div>
+  <div>
+    <h1>
+      List of all messages
+    </h1>
+  </div>
+</div>
+
+<hr>
+
+<div>
+  <div>
+    <h2>
+      Add a new message
+    </h2>
+
+    <form action="/insert_message" method="post">
+      <div>
+        <label for="initial_spending_habits_input_id_box">
+          Initial spending habits input
+        </label>
+
+        <input type="text" id="initial_spending_habits_input_id_box" name="query_initial_spending_habits_input_id">
+      </div>
+
+      <div>
+        <label for="user_id_box">
+          User
+        </label>
+
+        <input type="text" id="user_id_box" name="query_user_id">
+      </div>
+
+      <button>
+        Create message
+      </button>
+    </form>
+  </div>
+</div>
+
+<hr>
+<div>
+  <div>
+    <table border="1">
+      <tr>
+        <th>
+          ID
+        </th>
+
+        <th>
+          Initial spending habits input
+        </th>
+
+        <th>
+          User
+        </th>
+
+        <th>
+          Created at
+        </th>
+
+        <th>
+          Updated at
+        </th>
+
+        <th>
+        </th>
+      </tr>
+
+      <% @list_of_messages.each do |a_message| %>
+      <tr>
+        <td>
+          <%= a_message.id %>
+        </td>
+
+        <td>
+          <%= a_message.initial_spending_habits_input_id %>
+        </td>
+
+        <td>
+          <%= a_message.user_id %>
+        </td>
+
+        <td>
+          <%= time_ago_in_words(a_message.created_at) %> ago
+        </td>
+        <td>
+          <%= time_ago_in_words(a_message.updated_at) %> ago
+        </td>
+
+        <td>
+          <a href="/messages/<%= a_message.id %>">
+            Show details
+          </a>
+        </td>
+      </tr>
+      <% end %>
+    </table>
+  </div>
+</div>
+
+<hr>

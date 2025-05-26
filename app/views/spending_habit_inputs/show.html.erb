@@ -1,0 +1,161 @@
+<div>
+  <div>
+    <h1>
+      Spending habit input #<%= @the_spending_habit_input.id %> details
+    </h1>
+
+    <div>
+      <div>
+        <a href="/spending_habit_inputs">
+          Go back
+        </a>
+      </div>
+
+      <div>
+        <a href="/delete_spending_habit_input/<%= @the_spending_habit_input.id %>">
+          Delete spending habit input
+        </a>
+      </div>
+    </div>
+
+    <dl>
+      <dt>
+        Created by
+      </dt>
+      <dd>
+        <%= @the_spending_habit_input.created_by_id %>
+      </dd>
+
+      <dt>
+        Groceries
+      </dt>
+      <dd>
+        <%= @the_spending_habit_input.groceries %>
+      </dd>
+
+      <dt>
+        Gasfuel
+      </dt>
+      <dd>
+        <%= @the_spending_habit_input.gasfuel %>
+      </dd>
+
+      <dt>
+        Diningrestaurants
+      </dt>
+      <dd>
+        <%= @the_spending_habit_input.diningrestaurants %>
+      </dd>
+
+      <dt>
+        Travel flights hotels uber
+      </dt>
+      <dd>
+        <%= @the_spending_habit_input.travel_flights_hotels_uber %>
+      </dd>
+
+      <dt>
+        Airline loyalty
+      </dt>
+      <dd>
+        <%= @the_spending_habit_input.airline_loyalty %>
+      </dd>
+
+      <dt>
+        Annual fee tolerance
+      </dt>
+      <dd>
+        <%= @the_spending_habit_input.annual_fee_tolerance %>
+      </dd>
+
+      <dt>
+        Created at
+      </dt>
+      <dd>
+        <%= time_ago_in_words(@the_spending_habit_input.created_at) %> ago
+      </dd>
+
+      <dt>
+        Updated at
+      </dt>
+      <dd>
+        <%= time_ago_in_words(@the_spending_habit_input.updated_at) %> ago
+      </dd>
+    </dl>
+  </div>
+</div>
+
+<hr>
+
+
+<div>
+  <div>
+    <h2>
+      Edit spending habit input
+    </h2>
+
+    <form action="/modify_spending_habit_input/<%= @the_spending_habit_input.id %>"  method="post" >
+      <div>
+        <label for="created_by_id_box">
+          Created by
+        </label>
+
+        <input type="text" id="created_by_id_box" name="query_created_by_id" value="<%= @the_spending_habit_input.created_by_id %>">
+      </div>
+
+      <div>
+        <label for="groceries_box">
+          Groceries
+        </label>
+
+        <input type="text" id="groceries_box" name="query_groceries" value="<%= @the_spending_habit_input.groceries %>">
+      </div>
+
+      <div>
+        <label for="gasfuel_box">
+          Gasfuel
+        </label>
+
+        <input type="text" id="gasfuel_box" name="query_gasfuel" value="<%= @the_spending_habit_input.gasfuel %>">
+      </div>
+
+      <div>
+        <label for="diningrestaurants_box">
+          Diningrestaurants
+        </label>
+
+        <input type="text" id="diningrestaurants_box" name="query_diningrestaurants" value="<%= @the_spending_habit_input.diningrestaurants %>">
+      </div>
+
+      <div>
+        <label for="travel_flights_hotels_uber_box">
+          Travel flights hotels uber
+        </label>
+
+        <input type="text" id="travel_flights_hotels_uber_box" name="query_travel_flights_hotels_uber" value="<%= @the_spending_habit_input.travel_flights_hotels_uber %>">
+      </div>
+
+      <div>
+        <label for="airline_loyalty_box">
+          Airline loyalty
+        </label>
+
+        <input type="text" id="airline_loyalty_box" name="query_airline_loyalty" value="<%= @the_spending_habit_input.airline_loyalty %>">
+      </div>
+
+      <div>
+        <label for="annual_fee_tolerance_box">
+          Annual fee tolerance
+        </label>
+
+        <input type="text" id="annual_fee_tolerance_box" name="query_annual_fee_tolerance" value="<%= @the_spending_habit_input.annual_fee_tolerance %>">
+      </div>
+
+      <button>
+        Update spending habit input
+      </button>
+    </form>
+  </div>
+</div>
+
+<hr>

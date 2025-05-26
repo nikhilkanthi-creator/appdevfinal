@@ -19,11 +19,11 @@ class ConversationsController < ApplicationController
 
   def create
     the_conversation = Conversation.new
-    the_conversation.user_id = params.fetch("query_user_id")
+    the_conversation.user_id = current_user.id
 
     if the_conversation.valid?
       the_conversation.save
-      redirect_to("/conversations", { :notice => "Conversation created successfully." })
+      redirect_to("/conversations/#{the_conversation.id}", { :notice => "Conversation created successfully." })
     else
       redirect_to("/conversations", { :alert => the_conversation.errors.full_messages.to_sentence })
     end

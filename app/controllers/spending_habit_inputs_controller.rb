@@ -19,7 +19,8 @@ class SpendingHabitInputsController < ApplicationController
 
   def create
     the_spending_habit_input = SpendingHabitInput.new
-    the_spending_habit_input.created_by_id = params.fetch("query_created_by_id")
+    the_spending_habit_input.created_by_id = 1
+    the_spending_habit_input.conversation_id = 1
     the_spending_habit_input.groceries = params.fetch("query_groceries")
     the_spending_habit_input.gasfuel = params.fetch("query_gasfuel")
     the_spending_habit_input.diningrestaurants = params.fetch("query_diningrestaurants")
@@ -39,7 +40,6 @@ class SpendingHabitInputsController < ApplicationController
     the_id = params.fetch("path_id")
     the_spending_habit_input = SpendingHabitInput.where({ :id => the_id }).at(0)
 
-    the_spending_habit_input.created_by_id = params.fetch("query_created_by_id")
     the_spending_habit_input.groceries = params.fetch("query_groceries")
     the_spending_habit_input.gasfuel = params.fetch("query_gasfuel")
     the_spending_habit_input.diningrestaurants = params.fetch("query_diningrestaurants")

@@ -18,7 +18,7 @@ class SpendingHabitInputsController < ApplicationController
   end
 
   def create
-
+    conversation_id = params.fetch("conversation_id")
     the_spending_habit_input = SpendingHabitInput.new
     the_spending_habit_input.created_by_id = current_user.id
     the_spending_habit_input.conversation_id = params.fetch("conversation_id")
@@ -31,7 +31,7 @@ class SpendingHabitInputsController < ApplicationController
 
     if the_spending_habit_input.valid?
       the_spending_habit_input.save
-      redirect_to("/spending_habit_inputs", { :notice => "Spending habit input created successfully." })
+      redirect_to("/conversations/#{conversation_id}", { :notice => "Spending habit input created successfully." })
     else
       redirect_to("/spending_habit_inputs", { :alert => the_spending_habit_input.errors.full_messages.to_sentence })
     end

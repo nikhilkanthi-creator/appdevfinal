@@ -1,8 +1,10 @@
 <div>
   <div>
-    <h1>
-      Here are your spending habits!
-    </h1>
+    <h2>
+      Let's see which credit card maxes out your travel benefits
+    </h2>
+
+
 
     <div>
         <a href="/delete_conversation/<%= @the_conversation.id %>">
@@ -25,7 +27,7 @@
 <div>
   <div>
     <h2>
-      Add a new spending habit input
+      Add your estimated spend in each category to get the best card for you.
     </h2>
 
     <form action="/insert_spending_habit_input" method="post">
@@ -82,7 +84,7 @@
       </div>
 
       <button>
-        Create spending habit input
+        Ask ChatGPT
       </button>
     </form>
   </div>
@@ -91,10 +93,13 @@
 
 <hr>
 
-<% @spending_habits = SpendingHabitInput.where({ :conversation_id => @the_conversation.id}) %>
+<% @spending_habits = @the_conversation.spending_habit_inputs %>
 <% if @spending_habits.any? %>
-  <% @spending_habits.each do |sh| %>
+<% count = 0 %>
+  <% @spending_habits.order(:created_at => :desc).each do |sh| %>
     <dl>
+    <% count = count + 1%>
+      <h3> Spending Habit # <%= count %> </h3>
       <dt>Airline Loyalty</dt>
       <dd><%= sh.airline_loyalty.to_s %></dd>
 

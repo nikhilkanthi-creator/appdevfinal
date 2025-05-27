@@ -121,3 +121,15 @@
 <% end %>
 
 <hr>
+
+<% @the_messages = @the_conversation.messages %>
+<dl>
+<% @the_messages.each do | a_message | %>
+  <dt>
+    <%= a_message.role %>
+  </dt>
+  <dd>
+    <%= a_message.body %>
+  </dd>
+<% end %>
+</dl>

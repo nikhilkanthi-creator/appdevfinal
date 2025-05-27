@@ -38,19 +38,81 @@ class ConversationsController < ApplicationController
           messages: [
             { "role" => "system", "content" => system_message.body},
             { "role" => "user", "content" => ""}
-          ]
+          ],
+          "functions" => [
+          {
+            "name"        => "card_roi_schema",
+            "description" => "Returns the best credit card and ROI numbers based on spend",
+            "parameters"  => {
+              "type"       => "object",
+              "properties" => {
+                "recommended_card"   => {
+                  "type"        => "string",
+                  "description" => "Name of the recommended credit card"
+                },
+                "first_year_return"  => {
+                  "type"        => "number",
+                  "description" => "Return in dollars after year 1"
+                },
+                "total_return_3yr"   => {
+                  "type"        => "number",
+                  "description" => "Total return in dollars over 3 years"
+                },
+                "total_return_5yr"   => {
+                  "type"        => "number",
+                  "description" => "Total return in dollars over 5 years"
+                },
+                "per_year_return_3yr" => {
+                  "type"        => "number",
+                  "description" => "Average annual return over 3 years"
+                },
+                "per_year_return_5yr" => {
+                  "type"        => "number",
+                  "description" => "Average annual return over 5 years"
+                },
+                "free_text"           => {
+                  "type"        => "string",
+                  "description" => "Human‐readable explanation of the recommendation"
+                }
+              },
+              "required" => [
+                "recommended_card",
+                "first_year_return",
+                "total_return_3yr",
+                "total_return_5yr",
+                "per_year_return_3yr",
+                "per_year_return_5yr",
+                "free_text"
+              ]
+            }
+          }
+        ],
+        "function_call" => { "name" => "card_roi_schema" }
         }
       )
-      llm_content = response.fetch("choices").at(0).fetch("message").fetch("content")
 
-      assistant_message = Message.new
-      assistant_message.conversation_id = the_conversation.id
-      assistant_message.user_id = current_user.id
-      assistant_message.role = "assistant"
-      assistant_message.body = llm_content
-      assistant_message.save
+      choice        = response.fetch("choices").at(0)
+      func_call     = choice.fetch("message").fetch("function_call")
+      parsed        = JSON.parse(func_call.fetch("arguments"))
 
+      formatted_output = <<~OUTPUT
+        Recommended Card: #{parsed.fetch("recommended_card")}
+        First Year Return: $#{parsed.fetch("first_year_return")}
+        Total Return (3yr): $#{parsed.fetch("total_return_3yr")}
+        Total Return (5yr): $#{parsed.fetch("total_return_5yr")}
+        Annualized Return (3yr): $#{parsed.fetch("per_year_return_3yr")}
+        Annualized Return (5yr): $#{parsed.fetch("per_year_return_5yr")}
 
+        Explanation:
+        #{parsed.fetch("free_text")}
+      OUTPUT
+
+      latest_message = Message.new
+      latest_message.conversation_id = the_conversation.id
+      latest_message.user_id         = current_user.id
+      latest_message.role            = "assistant"
+      latest_message.body            = formatted_output
+      latest_message.save
     redirect_to("/conversations/#{the_conversation.id}", { :notice => "Conversation created successfully." })
 
     else

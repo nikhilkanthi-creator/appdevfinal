@@ -124,8 +124,8 @@
   <dt>
     <%= a_message.role %>
   </dt>
-  <dd>
-    <%= a_message.body %>
+  <dd style="white-space: pre-wrap;">
+    <pre><%= a_message.body.gsub("\n", "<br>").html_safe %></pre>
   </dd>
 <% end %>
 </dl>

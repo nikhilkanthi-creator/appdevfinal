@@ -45,6 +45,12 @@ class MessagesController < ApplicationController
         end
       end
 
+      # 2.1 add the spending habits to the user message
+
+      associated_spendinghabits = the_message.initial_spending_habits_input
+      message_list.push({ "role" => "user", "content" => "I spend #{associated_spendinghabits.groceries} on groceries."})
+
+
       # 3. Now send the package to OpenAI:
     
     client = OpenAI::Client.new

@@ -95,11 +95,9 @@
 
 <% @spending_habits = @the_conversation.spending_habit_inputs %>
 <% if @spending_habits.any? %>
-<% count = 0 %>
-  <% @spending_habits.order(:created_at => :desc).each do |sh| %>
+  <% sh = @spending_habits.last %>
     <dl>
-    <% count = count + 1%>
-      <h3> Spending Habit # <%= count %> </h3>
+      <h3> Spending Habit </h3>
       <dt>Airline Loyalty</dt>
       <dd><%= sh.airline_loyalty.to_s %></dd>
 
@@ -118,7 +116,6 @@
       <dt>Travel, Flights, Hotels &amp; Uber</dt>
       <dd><%= sh.travel_flights_hotels_uber.to_s %></dd>
     </dl>
-  <% end %>
 <% else %>
   <p>No spending-habit data entered yet.</p>
 <% end %>

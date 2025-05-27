@@ -1,10 +1,7 @@
 <div>
-  <div>
     <h2>
       Let's see which credit card maxes out your travel benefits
     </h2>
-
-
 
     <div>
         <a href="/delete_conversation/<%= @the_conversation.id %>">
@@ -20,7 +17,6 @@
       </dd>
     </dl>
   </div>
-</div>
 
 <hr>
 
@@ -40,7 +36,7 @@
           Groceries
         </label>
 
-        <input type="text" id="groceries_box" name="query_groceries">
+        <input type="text" id="groceries_box" name="query_groceries" value="100">
       </div>
 
       <div>
@@ -48,7 +44,7 @@
           Gasfuel
         </label>
 
-        <input type="text" id="gasfuel_box" name="query_gasfuel">
+        <input type="text" id="gasfuel_box" name="query_gasfuel" value="100">
       </div>
 
       <div>
@@ -56,15 +52,15 @@
           Diningrestaurants
         </label>
 
-        <input type="text" id="diningrestaurants_box" name="query_diningrestaurants">
+        <input type="text" id="diningrestaurants_box" name="query_diningrestaurants" value="100">
       </div>
 
       <div>
-        <label for="travel_flights_hotels_uber_box">
+        <label for="travel_flights_hotels_uber_box" >
           Travel flights hotels uber
         </label>
 
-        <input type="text" id="travel_flights_hotels_uber_box" name="query_travel_flights_hotels_uber">
+        <input type="text" id="travel_flights_hotels_uber_box" name="query_travel_flights_hotels_uber" value="100">
       </div>
 
       <div>
@@ -72,7 +68,7 @@
           Airline loyalty
         </label>
 
-        <input type="text" id="airline_loyalty_box" name="query_airline_loyalty">
+        <input type="text" id="airline_loyalty_box" name="query_airline_loyalty" value="United">
       </div>
 
       <div>

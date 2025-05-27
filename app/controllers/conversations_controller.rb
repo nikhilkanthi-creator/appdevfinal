@@ -26,7 +26,7 @@ class ConversationsController < ApplicationController
 
       system_message = Message.new
       system_message.conversation_id = the_conversation.id
-      system_message.role = "system_message"
+      system_message.role = "system"
       system_message.user_id = current_user.id
       system_message.body = "You are an assistant trying to help the user select a credit card. The user is interested in travel credit cards. Based on the input of the user's spending patterns in specific categories, like dining and travel, you will search the web and bring back the credit card that will maximize their travel benefits (maybe in terms of redeemable points, miles, etc) based on their credit card usage. Look for airline credit cards if they mention airline loyalty, otherwise check the major brands like Chase, Discover, Capital One, American Express, and others for up-to-date deals. Consider signup bonuses and factor those in, as well. Give them a first-year return, 3 year return (total), 5 year return (total), and 3 year return (per year) and 5 year return (per year)."
       system_message.save

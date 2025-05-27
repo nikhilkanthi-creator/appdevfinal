@@ -133,3 +133,19 @@
   </dd>
 <% end %>
 </dl>
+
+<% sh = @the_conversation.spending_habit_inputs.last %>
+<% if @the_conversation.spending_habit_inputs.any? %>
+<form action="/insert_message" method="post">
+  <input type="hidden" name="conversation_id" value="<%= @the_conversation.id %>">
+  <input type="hidden" name="query_initial_spending_habits_input_id" value="<%= sh.id %>">
+
+  <textarea name="query_body" id="query_body"></textarea>
+  <button>Write a message</button>
+
+</form>
+<% else %>
+Add spending habits to start the chat!
+<% end %>
+
+<hr>

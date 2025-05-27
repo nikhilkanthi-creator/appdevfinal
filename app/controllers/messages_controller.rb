@@ -27,6 +27,44 @@ class MessagesController < ApplicationController
 
     if the_message.valid?
       the_message.save
+
+      # 1. Get the message history
+
+      existing_messages = the_message.conversation.messages.order(:created_at)
+
+      # 2. Break this whole list of messages into system, user, and assistant arrays
+
+      message_list = []
+      existing_messages.each do | a_message |
+        if a_message.role == "system"
+          message_list.push({ "role" => "system", "content" => a_message.body })
+        elsif a_message.role == "user"
+          message_list.push({ "role" => "user", "content" => a_message.body })
+        else
+          message_list.push({ "role" => "assistant", "content" => a_message.body })
+        end
+      end
+
+      # 3. Now send the package to OpenAI:
+    
+    client = OpenAI::Client.new
+    response = client.chat(
+      parameters: {
+        "model" => "gpt-3.5-turbo",
+        "messages" => message_list
+      }  
+    )
+
+    latest_llm_content = response.fetch("choices").at(0).fetch("message").fetch("content")
+
+    latest_message = Message.new
+    latest_message.conversation_id = the_message.conversation_id
+    latest_message.user_id = current_user.id
+    latest_message.role = "assistant"
+    latest_message.body = latest_llm_content
+    latest_message.save
+
+
       redirect_to("/conversations/#{the_message.conversation_id}", { :notice => "Message created successfully." })
     else
       redirect_to("/", { :alert => the_message.errors.full_messages.to_sentence })

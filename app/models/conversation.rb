@@ -13,4 +13,6 @@ class Conversation < ApplicationRecord
           class_name:  "SpendingHabitInput",
           foreign_key: "conversation_id",
           dependent:   :destroy
+  has_many :messages, dependent: :destroy
+
 end

@@ -5,22 +5,18 @@
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <%= javascript_importmap_tags %>
-
-            <a href="/conversations">Go back</a>
-            <a href="/">Go home</a>
-
   </head>
 <nav>
+  <a href="/">Homepage</a>
   <% if user_signed_in? %>
     Signed in. <%= link_to "Sign Out", destroy_user_session_path, method: :delete %>
     <% else %>
   <%= link_to "Sign Up", new_user_registration_path %> |
   <%= link_to "Sign In", new_user_session_path %>
-
   <% end %>
+
 </nav>
 
   <body>

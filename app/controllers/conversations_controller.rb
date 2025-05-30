@@ -72,7 +72,7 @@ class ConversationsController < ApplicationController
                 },
                 "free_text"           => {
                   "type"        => "string",
-                  "description" => "Human‐readable explanation of the recommendation"
+                  "description" => "Human‐readable explanation of the recommendatio, approximately 200 words long, referencing specific input categories that swayed this decision"
                 }
               },
               "required" => [

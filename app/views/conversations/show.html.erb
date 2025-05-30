@@ -3,19 +3,10 @@
       Let's see which credit card maxes out your travel benefits
     </h2>
 
-    <div>
-        <a href="/delete_conversation/<%= @the_conversation.id %>">
-          Delete conversation
-        </a>
-    </div>
-
       <dt>
-        Created at
+        Created <%= time_ago_in_words(@the_conversation.created_at) %> ago
       </dt>
-      <dd>
-        <%= time_ago_in_words(@the_conversation.created_at) %> ago
-      </dd>
-    </dl>
+
   </div>
 
 <hr>
@@ -41,7 +32,7 @@
 
       <div>
         <label for="gasfuel_box">
-          Gasfuel
+          Gas &fuel
         </label>
 
         <input type="text" id="gasfuel_box" name="query_gasfuel" value="100">
@@ -49,7 +40,7 @@
 
       <div>
         <label for="diningrestaurants_box">
-          Diningrestaurants
+          Dining & Restaurants
         </label>
 
         <input type="text" id="diningrestaurants_box" name="query_diningrestaurants" value="100">
@@ -145,3 +136,9 @@ Add spending habits to start the chat!
 <% end %>
 
 <hr>
+
+    <div>
+        <a href="/delete_conversation/<%= @the_conversation.id %>">
+          Delete conversation
+        </a>
+    </div>

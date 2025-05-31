@@ -19,3 +19,5 @@
   .fancy-button:active {
     background-color: blue;
   }
+
+  body { padding: 20px;}

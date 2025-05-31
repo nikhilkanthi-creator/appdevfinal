@@ -117,12 +117,14 @@
 <% @the_messages = @the_conversation.messages %>
 <dl>
 <% @the_messages.each do | a_message | %>
+<div class="container">
   <dt>
     <%= a_message.role %>
   </dt>
-  <dd style="white-space: pre-wrap;">
-    <pre><%= a_message.body.gsub("\n", "<br>").html_safe %></pre>
+  <dd style="white-space: pre-wrap; overflow-wrap: break-word;">
+    <%= a_message.body.gsub("\n", "<br>").html_safe %>
   </dd>
+</div>
 <% end %>
 </dl>
 
